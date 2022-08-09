@@ -1,43 +1,29 @@
 #!/usr/bin/python3
-"""Module test_user.py
-unittest for User.
 """
-
-from models.base_model import BaseModel
-from models.user import User
+    Contains tests for the user class.
+"""
 import unittest
+from models.user import User
 
 
-class TestUser(unittest.TestCase):
-    """class TestUser."""
+class TestUserMethods(unittest.TestCase):
+    """Defines the tests to be carried out on User's class methods"""
 
-    def setUp(self):
-        pass
+    def test_attributes_exist(self):
+        """Test that the class User has the required attributes"""
+        self.assertTrue(hasattr(User, 'email'))
+        self.assertTrue(hasattr(User, 'password'))
+        self.assertTrue(hasattr(User, 'first_name'))
+        self.assertTrue(hasattr(User, 'last_name'))
 
-    def test_8_instantiation(self):
-        """Tests instatiation of User class."""
+    def test_attribute_types(self):
+        """Test whether the class attributes are of the right type"""
+        user_1 = User()
+        self.assertIsInstance(user_1.email, str)
+        self.assertIsInstance(user_1.password, str)
+        self.assertIsInstance(user_1.first_name, str)
+        self.assertIsInstance(user_1.last_name, str)
 
-        u = User()
-        self.assertEqual(str(type(u)), "<class 'models.user.User'>")
-        self.assertIsInstance(u, User)
-        self.assertTrue(issubclass(type(u), BaseModel))
-
-    def test_8_attr_are_class_attrs(self):
-        """checks if attributes are of the class attributes."""
-
-        u = User()
-        self.assertTrue(hasattr(User, "first_name"))
-        self.assertTrue(hasattr(User, "last_name"))
-        self.assertTrue(hasattr(User, "email"))
-        self.assertTrue(hasattr(User, "password"))
-
-    def test_8_attributes(self):
-
-        u = User()
-        self.assertTrue(u.first_name == "")
-        self.assertTrue(u.last_name == "")
-        self.assertIs(type(u.email), str)
-        self.assertIs(type(u.password), str)
 
 if __name__ == '__main__':
     unittest.main()
